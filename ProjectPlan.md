@@ -29,7 +29,8 @@ I will be working independently for this project. Below, I will outline the step
 ##### Metadata and Data Documentation:
 -  I will ensure to complete all necessary documents, upload them to the correct place (GitHub Repo) and update this plan as I recieve feedback from the course staff. I will also be in charge of delivering the final report including the findings from this project. 
 ## Datasets: Identify and describe the 2 datasets that you will use. If you are looking for ideas for datasets to use, please reach out on CampusWire
-
+- Dataset 1: IMDB Top 250 Movies Dataset. This dataset contains the top 250 highest rated movies. It was webscrapped from the offical IMDB's website and is in line with the ethical considerations and sharing. 
+- Dataset 2: TMDB 5000 Movie Dataset. My second dataset contains 5000 movies with different features such as popularity, revenue, vote count, and more. These 5000 movies are from the Movie Database (TMDb) and is following all their sharing protocols. 
 ## Timeline: Document the plan and timeline for implementing your project including who will complete each task
 #### Planning and Dataset Selection
 - Submit this ipynb by 10/7 
