@@ -1,0 +1,496 @@
+[
+  {
+    "op": "core/text-transform",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "License #",
+    "expression": "value.toNumber()",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10,
+    "description": "Text transform on cells in column License # using expression value.toNumber()"
+  },
+  {
+    "op": "core/text-transform",
+    "engineConfig": {
+      "facets": [
+        {
+          "type": "range",
+          "name": "License #",
+          "expression": "value",
+          "columnName": "License #",
+          "from": 0,
+          "to": 3300000,
+          "selectNumeric": false,
+          "selectNonNumeric": true,
+          "selectBlank": true,
+          "selectError": true
+        }
+      ],
+      "mode": "row-based"
+    },
+    "columnName": "License #",
+    "expression": "value.toNumber()",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10,
+    "description": "Text transform on cells in column License # using expression value.toNumber()"
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "Risk",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "Risk 1 (High)",
+          "Risk 1 (HIGH)",
+          "Risk 1   (High)",
+          "risk 1 (High)"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Risk 1 (High)"
+      },
+      {
+        "from": [
+          "Risk 3 (Low)",
+          "Risk 3   (Low)",
+          "Risk 3  (Low)"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Risk 3 (Low)"
+      },
+      {
+        "from": [
+          "Risk 2 (Medium)",
+          "risk 2 (Medium)"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Risk 2 (Medium)"
+      }
+    ],
+    "description": "Mass edit cells in column Risk"
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "Inspection Type",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "License Re-inspection",
+          "License Re-Inspection",
+          "License Reinspection",
+          "License  Re-inspection",
+          "License Rei-nspection",
+          "license re-inspection"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "License Re-inspection"
+      },
+      {
+        "from": [
+          "License",
+          "LICENSE",
+          "license",
+          "lICENSE"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "License"
+      },
+      {
+        "from": [
+          "Canvass",
+          "canvass",
+          "CANVASS",
+          "cANVASS"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Canvass"
+      },
+      {
+        "from": [
+          "Complaint",
+          "COMPLAINT",
+          "complaint"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Complaint"
+      },
+      {
+        "from": [
+          "Canvass Re-inspection",
+          "CANVASS RE-INSPECTION",
+          "Canvass  Re-inspection"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Canvass Re-inspection"
+      },
+      {
+        "from": [
+          "Short Form Complaint",
+          "sHORT fORM cOMPLAINT"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Short Form Complaint"
+      }
+    ],
+    "description": "Mass edit cells in column Inspection Type"
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "Inspection Type",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "Short Form Complaint",
+          "Shor tForm Complaint"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Short Form Complaint"
+      },
+      {
+        "from": [
+          "Canvass Re-inspection",
+          "Canvass Re inspection"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Canvass Re-inspection"
+      },
+      {
+        "from": [
+          "License Re-inspection",
+          "License Re inspection"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "License Re-inspection"
+      },
+      {
+        "from": [
+          "Complaint Re-inspection",
+          "Complaint Re inspection"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Complaint Re-inspection"
+      }
+    ],
+    "description": "Mass edit cells in column Inspection Type"
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "Inspection Type",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "Canvass Re-inspection",
+          "Canvass Re-inspecshun",
+          "Canvass Re-inspention",
+          "Canvass Re-inspeotion",
+          "Canvass Re-inzpection"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Canvass Re-inspection"
+      },
+      {
+        "from": [
+          "Canvass",
+          "Canvas",
+          "Canavss",
+          "Canvhss",
+          "Cunvass"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Canvass"
+      },
+      {
+        "from": [
+          "anvass",
+          "oanvass",
+          "uanvass",
+          "yanvass"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "anvass"
+      },
+      {
+        "from": [
+          "Licenes",
+          "Licens",
+          "Licensa",
+          "Licenss"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Licenes"
+      },
+      {
+        "from": [
+          "Complaint Re-inspection",
+          "Complaint Re-inspecshun",
+          "Complaint Re-inspectoin",
+          "ComplaintaRe-inspection"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Complaint Re-inspection"
+      },
+      {
+        "from": [
+          "License",
+          "Lisence",
+          "Lacense",
+          "Lciense"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "License"
+      },
+      {
+        "from": [
+          "License Re-inspection",
+          "License Re-inspecshun",
+          "License Re-inspettion"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "License Re-inspection"
+      },
+      {
+        "from": [
+          "Cnavass",
+          "Cnvass"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Cnavass"
+      },
+      {
+        "from": [
+          "icense",
+          "iicense"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "icense"
+      },
+      {
+        "from": [
+          "Complaint",
+          "Cmoplaint"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Complaint"
+      }
+    ],
+    "description": "Mass edit cells in column Inspection Type"
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "Inspection Type",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "Canvass",
+          "Canvash",
+          "Canvtss"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Canvass"
+      },
+      {
+        "from": [
+          "Short Form Complaint",
+          "Shjrt Form Complaint"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Short Form Complaint"
+      },
+      {
+        "from": [
+          "License",
+          "Licenes"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "License"
+      }
+    ],
+    "description": "Mass edit cells in column Inspection Type"
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "Inspection Type",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "Short Form Complaint",
+          "Short Form momplaint",
+          "ShortbForm Complaint"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Short Form Complaint"
+      },
+      {
+        "from": [
+          "Canvass",
+          "Cnavass"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Canvass"
+      }
+    ],
+    "description": "Mass edit cells in column Inspection Type"
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "Inspection Type",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "Canvass",
+          "anvass",
+          "Canvast",
+          "manvass"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Canvass"
+      },
+      {
+        "from": [
+          "License Re-inspection",
+          "License Rp-inspection"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "License Re-inspection"
+      },
+      {
+        "from": [
+          "License",
+          "icense"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "License"
+      },
+      {
+        "from": [
+          "Complaint",
+          "Complainj"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Complaint"
+      }
+    ],
+    "description": "Mass edit cells in column Inspection Type"
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "Inspection Type",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "Complaint Re-inspection",
+          "Complaint Re-isnpection"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Complaint Re-inspection"
+      }
+    ],
+    "description": "Mass edit cells in column Inspection Type"
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "Inspection Type",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "License Re-inspection",
+          "Licesne Re-inspection"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "License Re-inspection"
+      },
+      {
+        "from": [
+          "Complaint",
+          "oCmplaint"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Complaint"
+      }
+    ],
+    "description": "Mass edit cells in column Inspection Type"
+  }
+]
