@@ -145,6 +145,7 @@ Privacy: While movie data is public, any integration of user-generated content (
 - Project.ipynb (workbook for project code)
 - NEW StatusReport.md         
 
+<<<<<<< HEAD:ProjectDocuments/StatusReport/StatusReport.md
 
 ```python
 pip install nbconvert
@@ -188,3 +189,5 @@ pip install nbconvert
 ```python
 
 ```
+=======
+>>>>>>> aaba8a6226ea8f9213de772b29848de08a48875f:Project Documents/Status Report/StatusReport.md
