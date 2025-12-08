@@ -1,0 +1,9 @@
+snakemake==9.14.2
+jupyter
+nbconvert
+nbformat
+pandas
+numpy
+matplotlib
+seaborn
+scikit-learn
