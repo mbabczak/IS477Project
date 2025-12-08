@@ -1,0 +1,37 @@
+Assuming unrestricted shared filesystem usage.
+host: wirelessprv-10-193-117-49.near.illinois.edu
+Building DAG of jobs...
+Using shell: /bin/bash
+Provided cores: 1 (use --cores to define parallelism)
+Rules claiming more threads will be scaled down.
+Job stats:
+job             count
+------------  -------
+all                 1
+run_notebook        1
+total               2
+
+Select jobs to execute...
+Execute 1 jobs...
+[Sun Dec  7 20:42:07 2025]
+localrule run_notebook:
+    input: Project.ipynb
+    output: Output/Project_executed.ipynb
+    jobid: 1
+    reason: Missing output files: Output/Project_executed.ipynb
+    resources: tmpdir=/var/folders/0n/dfqjq4691b3f0zm3nqj0j6g00000gn/T
+[Sun Dec  7 20:42:25 2025]
+Finished jobid: 1 (Rule: run_notebook)
+1 of 2 steps (50%) done
+Select jobs to execute...
+Execute 1 jobs...
+[Sun Dec  7 20:42:25 2025]
+localrule all:
+    input: Output/Project_executed.ipynb
+    jobid: 0
+    reason: Input files updated by another job: Output/Project_executed.ipynb
+    resources: tmpdir=/var/folders/0n/dfqjq4691b3f0zm3nqj0j6g00000gn/T
+[Sun Dec  7 20:42:25 2025]
+Finished jobid: 0 (Rule: all)
+2 of 2 steps (100%) done
+Complete log(s): /Users/mollybabczak/Desktop/IS477.md/ProjectDocuments/.snakemake/log/2025-12-07T204207.198228.snakemake.log
