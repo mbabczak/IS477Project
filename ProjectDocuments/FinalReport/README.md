@@ -1,0 +1,141 @@
+# Project Title: Data Integration and Prediction of Movie Ratings from Multiple Sources
+# Contributors: Molly Babczak - All work was done independently
+# Summary :
+In this project, I decided to use IMDb and TMDb movie rating data to explore relationships how between movie ratings, genres, run-time, and more. For this project specifically, I decided to focus on two reasearch questions:
+
+1) How do different features (genre, release year, etc) influence a movies rating? 
+2) Can we accuratley predict the average movie ratings based on previous trends? 
+
+I decided to focus on these two datasets and these specific research questions because I am an avid movie watcher myself and this project was something that really intrigued me. The algorithims developed in this report are also something that can be applied as a movie recommender and help people who want to watch a movie but don't know what to watch make a selection. For this report, I decided to explore the movie data by following the following steps which will be further explained in this report: data collection & aquisition, storage & organization, extraction & enrichments, data integration, data quality & cleaning, data analysis/visualization, workflow automation & provenance, reproducibility & transparency, and finally metadata and data documentation. 
+
+- Data Collection & Aquisition: To complete this project, I used two datasets from IMDb and TMDb. The IMDb data was collected by a Kaggle user by webscripping the offical IMDb website and tranforming the data into a CSV file. I then accessed the data by downloading the CSV file from Kaggle.com, which is publically accessible. The TMDb data is managed directly by TMDb and is updated daily. I acquired the data by creating a TMDb account and fetched the data via API Key. Both datasets were loaded into a Jupyter notebook and converted into Pandas DataFrames, where they were ready for further exploration.
+
+- Storage & Organization: This data is stored in two different ways. Firstly, the CSV file is downloaded and read in. This is a small file with only 250 rows, so there are no storage concerns regarding this dataset. For the TMDb data, the data is not stored locally and instead is fetched via an API key. As for my GitHub repository, I ensured to keep all project elements named correctly and stored in relevantly named files. 
+
+- Extraction & Enrichments: Once the raw data was loaded in my Jupyter Notebook, I created two subset versions of each dataset that contained fields with the same information such as title, rating, genre, and more. I also decided to generate new fields like "target_rating", used as the prediction target, "release_year" to standardized the dates across the two datasets, and "genre indicators" which converted the genre strings into binary indicator variables. These enrichment steps allowed for both of my datasets to be analyzed together.
+
+- Data Integration: After assessing the data and creating columns in common, it was time to combine both of the datasets. To combine them, I standardized both datasets into a shared schema and matched the shapes. I added missing columns with placeholders so that I could impute values into them later. For example, rows from the IMDb dataset do not include popularity scores, which the TMDb data does. These will be addressed and filled later. Then, I vertically concatenated the two seperate dfs into a single dataframe of over 500 movies.
+
+- Data Quality & Cleaning: To access data quality and clean up the data, I began by finding missing/null values and inaccurate entries. Once these were identified, I began cleaning by standardizing column names across both the IMDb and the TMDb datasets. Then, I handled missing values for the numeric columns by imputing median values. For missing categorical values, I used a different imputation strategy of keeping the null value as constant. I chose to do this because using the most_frequent strategy assumes that missing categories are similar to the most common one and this might not be true. Then, I created consistent target_rating columns to align IMDb and TMDb datasets. In the IMDb dataset it was calling 'rating' and in the TMDb dataset it was called 'vote_average_tmdb'. The final cleaned dataset consisted of both standardized numeric and categorical features.
+
+- Data Analysis and Visualization: To explore the research question "Can we accuratley predict the average movie ratings based on previous trends?", I built a machine learning pipeline using scikit-learn to handle all preprocessing steps, train the model, fit the model (Random Forest Regressor), and make predictions. I used the basic structure of this modeling process from the UIUC Class CS 307. The pipeline included a ColumnTransformer to transform and impute missing values in both categorical and numeric features, fitting a Random Forest Regression model with 100 trees and a random_state of 42, splitting the data into training and test sets, fitting the model to the training data, and then applying the model to unseen testing data. The results of this model were assessed via R^2 score. The model achieved an R^2 score of 0.764. This score means that the model explains approximately 76.4% of the variance in movie ratings. The higest R^2 a model can achieve is 1.0, so this score of 0.764 is a strong result. This is a great result considering the movies were rated on different movie database platforms but the ratings remained relatively the same indicating that there is a relationship between certain genres, run-times, etc. and better movie rating scores. 
+
+- Workflow Automation & Provenance: The entire process (minus having to download the data from Kaggle.com) that I took to collect, clean, combine, feature engineer, model, and predict is done in a single IPYNB. While the TMDb data is able to be acquired using an API key, the IMDb data requires the user to download the Kaggle file locally. However, once the user places the CSV file in the project directory, the remainder of the workflow is fully automated. I also recorded software version information, including Python, pandas, NumPy, and scikit-learn versions, to ensure reproducibility and to clearly show the user what versions of various packages this report was created on. To make this workflow automated, ********** the user will be able to run the code block to get all necessary code to run automatically. However, this will require manual imputation of an API key. (For ease of grading for the TA, I kept my personal API key. However, if this was being shared and implemented publically, the user would need to create their own API Key via the Official TMDB Website. Paste the API Key in the "TMDB_API_KEY") 
+
+- Reproducibility & Transparency: IMDb Top 250 dataset is webscrapped directly from IMDb's website, which explains that the data is allowed to be used under the stipulations that the user credits IMDb with the data and does not use it for commerical purposes. This data is then redistributed under the Kaggle user’s license, which states that the data cannot be redistributed and may only be used for personal, educational, or research purposes. In order to access the data, users must download the dataset directly from Kaggle. As for the TMDb data, the data cannot be redistributed and requires users to supply their own API key. This can be done be creating a free TMDb account and requires the user to follow the terms and conditions of only using the data for non-commercial and academic use.
+
+- Metadata and Data Documentation: Below, I will provide a complete data dictionary of both data sources. (See Data Profile Section) 
+# Data Profile: 
+Data Dictionaries: 
+
+Source: IMDb Top Rated Titles – Movies and TV Series (via Kaggle)
+Original Source: IMDb
+Format: CSV
+Granularity: One row per movie
+
+- rank[integer]: Rank of the movie
+- name [string]: Movie title as listed on IMDb
+- year[integer]: Year the movie was released
+- genre	[string]: Movie genres, typically stored as a comma-separated list
+- rating [float]: Average IMDb user rating (scale: 0–10)
+- budget [float]: Estimated production budget in US $
+- box_office [float]: Worldwide box office revenue in USD (may contain missing values)
+- certificate [string]:	Content rating
+- run_time [integer]: Movie runtime in minutes
+- tagline[string]: Tagline of the movie
+- casts [string]: Main cast members
+- directors	[string]: Director(s) of the movie
+- writers [string]	Writer(s) credited for the movie
+
+Source: The Movie Database (TMDb)
+Access Method: API Key
+Granularity: One row per movie
+
+- id [integer]: Unique TMDb movie identifier
+- name_tmdb	[string]: Movie title as listed on TMDb
+- release_date_tmdb	[date]:	Official release date 
+- genre_ids	[integers]: Numeric IDs representing movie genres
+- vote_average_tmdb	[float]: Average TMDb user rating (scale: 0–10)
+- vote_count_tmdb [integer]: Number of user ratings submitted
+- popularity [float]: TMDb popularity score (internal metric based on engagement)
+- original_language	[string]: Original language code
+
+Ethical/Legal Constraints:
+
+IMDb Top 250 Rated Titles: 
+- IMDb Top 250 dataset is webscrapped directly from IMDb's website, which explains that the data is allowed to be used under the stipulations that the user credits IMDb with the data and does not use it for commerical purposes. 
+- This data is then redistributed under the Kaggle user’s license, which states that the data cannot be redistributed and may only be used for personal, educational, or research purposes. 
+- In order to access the data, users must download the dataset directly from Kaggle. 
+- To get and use this data, users must create a Kaggle account, agree to the terms of service, and download the CSV file. 
+- The dataset contains webscrapped data from IMDb. The data that the dataset contains is non-personal information about movies that are able to be found publically. 
+- Users of this data must obey both IMDb and Kaggles terms of use policies. 
+- Expected update frequency: quaterly. 
+
+The Movie Database (TMDb):
+- The data from TMDb is accessed via the official TMDb website. Users must create an account, agree to the terms of use, and generate their own personal API key. 
+- TMDb allows free use of its data for non-commercial, academic, and personal projects
+- Data is derived from TMDb and uses it own standarized metrics to record ratings and genres. 
+- TMDb data is constantly updated and this may lead varying results depending on when the API is queried. 
+
+Combined Dataset Considerations:
+- Combining these two different datasets had some risk. I ensured to check each title against each source to ensure that a specific row in IMDB was in fact referring to the same title in TMDB. This was a difficult process and involved some risk. Additionally, there were variation in how different metrics were calculated, specifcally in the popularity rating. I ensure that titles were rated the same and if they weren't I took the average for them. Handling missing values was also risky because I used imputation strategies. This is not 100% reliable but was effective for this project. 
+# Data Quality: 
+One of the most important parts of this project was ensuring that the data used was high quality and would provide reliable results. It was even more important because this project required me to find two data sources and combine them, which created a few difficulties because two different sources created these datasets. Since both of these datasets were created by different companies and follow different naming conventions, shape and more, there were multiple data quality issues that needed to be found and handled before accurate analysis and machine learning could be performed. 
+
+Firstly, I began by inspecting the completeness of the datasets. Unfortunately, both of the datasets contained missing values. In the IMDb dataset, missing values were most common in fields like budget, box_office, and tagline. The missing values were identified by summary statistics and null counts to understand where they were occuring, the number of them, their and impact. A theory as to why these missing values were arrising was due to the fact that the data was webscrapped directly from IMDb before being converted into a CSV file for Kaggle. While most of the data was relatively intact and had values, there were still values that needed to be addressed in order for analysis to be done. In the TMDb dataset missing values were less frequent than in IMDb, but they were still present. Most of the missing values seemed to occurr in categorical fields such as the original_language and genre-related information. However, there were significantly less issues with the TMDb data because it was accessed through an API rather than web scraping. However, this does not mean it was perfect as there were still missing values identified. Additionally, certain movies did not have complete metadata available at the time the API was queried and therefore were left blank insided the dataset. 
+
+To address these missing data, I used a few different imputation strategies. Since both numeric and categorical columns had to be handled, I needed to use two different strategies, as one would not work for both since they were different types. For the numeric columns, the median of the column was imputed. This strategy was chosen due to the fact there were outliers in the data. The median is less sensitive to this than the mean and was therefore selected and a better strategy to use in this scenario. To handle categorical variables, the process was a bit more challening, especially considering columns like genre. It is incredibly bias to assume that the most frequent genre could work for a randomly missing movie genre. For example, if the most frequent genre in the dataset was horror, a kids cartoon movie with a missing genre should not be given the horror genre since that is not accurate for the genre type at all. To handle this bias, missing values were retained as a constant category. This was done to hopefully reduce the bias that would have originally occured if the column transformer simply selected the most frequent genre. 
+
+Consistency in features across both datasets was another major data quality concern. Since the data comes from different sources and companies, both datasets use different column names, formats, and representations for similar information. One example of this was that label column (average rating) was represented differently in both datasets. IMDb ratings were stored under "rating" whereas the TMDb ratings were stored under "vote_average". Additionally, another difference between the sources was how the release information was presented. In IMDb, the release date was recorded as a year, but in TMDb it was recorded as a full date. To fix these inconsistencies, columns were renamed,  standardized, or newly created. Genre information was also handled by one hot endcoding and converting the string based genre labels and numeric genre IDs into binary indicator variables. This then allowed the genres to be compared consistently across both datasets when they previously were not able to be compared.
+
+Additionally, data accuracy was assessed by checking for logically invalid or outside expected ranges values. This was done for numeric values by checking for negative values, extremyly implausible values, or values outside of expected ranges such as the 0-10 rating scale. From the assessment done, there were no major inaccuracies found through the search. Duplicate records were also checked for. The IMDb dataset did not contain duplicates, which is likely due to its ranked structure. As for the TMDb data, movie IDs were used to identify and remove any potential duplicates resulting from API queries. This system ensured that each movie would appear only once in the final dataset. This was a big help in preventing bias.
+
+One of the most major data quality issues was how the ratings were calculated. Fortunately, both IMDb and TMDb have their ratings on a 0–10 scale. Unfortunately, both platforms differ in how the ratings are collected and aggregated. These differences in how the ratings are calculated may introduce bias when the datasets are combined. To hopefully reduce this issue, when two of the same titles occured in the datasets with slightly different ratings, an average value was used instead. While this does not fully eliminate the calculation different amongst the platform, it aims to reduce the impact of the differences of the sources.
+
+Overall, the data quality of the two datasets were relatively high and required pretty minimal adjustments. There are still concerns about this data not being 100% perfect, but for the purpose of a free-lance and personal recommender model, this data works well. 
+# Findings: 
+This project taught me a lot of things that previous courses didn't have me consider, specifically in workflow automation and reproducibility. Firstly, in my previous class work, the major class projects that I have done were very rigid in instructions and offered minimal flexibility. These projects have been primarily done on PrairieLearn and required specific naming conventions for items, graded code cells, provided data to be used, and outlined what the results you create were supposed to be. Most of the projects only required me to consider one major element, such as ethical sourcing, data quality, or the ability to create insightful results from the analysis. None of these previous projects required me to consider all of these elements at once, which made this project a new type of challenge.
+
+Unlike my previous projects, this assignment allowed me to have a lot more creative freedom and explore different elements that were normally already outlined and created for me. At first, this was challenging and overwhelming. It was difficult to find data that was not only accurate and high quality but also compatible with a second dataset for integration. Learning how to combine datasets from different sources with differing attributes, formats, and missing values is an extremely valuable skill. I know that this experience will be directly applicable to future work in data science and analytics.
+
+Another major lesson that I learned was understanding and implementing reproducibility and automation. In most prior projects, the primary focus was on producing correct results and creating meaningful visualizations. Less of the grading was based upon whether the workflow itself could be replicated automatically. This project required me to think about how someone else could reproduce every step that I took and achieve the results. I became much more conscious of writing clear and structured code, as well as documenting different problems that are occuring, imputation strategies, and transformation processes. This forced me to shift from writing code that is just for me to code that can be reliably run by others.
+
+Additionally, the project reinforced the importance of ethical considerations and licensing. Working with Kaggle IMDb data and TMDb API data required me to carefully review terms of use, non-commercial limitations, and proper attribution. I also learnd that even publicly available datasets might have nuances in how missing or inconsistent data should be handled. These lessons will be critical for any future work involving third party data, particularly when it comes to responsible, complient use and transparent reporting of methodology.
+
+In terms of potential future work, there are several different thigns to explore. First, the machine learning model could be improved or expanded with additional features, such as production countries, age of voters, gender of voters, number of likes, and more which could help better predict movie ratings and provide even deeper insight. Another area for exploration could be developing a recommendation app. This could include more features such as genre preferences, run-time preferences and more. Finally, automating the workflow further could make the analysis more dynamic which would be useful for scaling the process in professional or research settings.
+
+Overall, this project emphasized the importance of integrating multiple data science principles (data quality, reproducibility, automation, ethical sourcing, and meaningful analysis) into a cohesive workflow. It had taught me very valuable lessons that go beyond technical skills and I know it will prepare me well for a full-time position as I continue my job search. 
+# Reproducing: sequences of steps required for someone else to repoduce your results
+- Link to Box: https://uofi.box.com/s/dpwe68fspwgezd8i0w3c6hconi0e7124
+
+Reproducing Steps:
+1) Clone the repository from GitHub
+
+git clone <your-repo-url>
+cd <repo-folder>
+
+2) Ensure you have the required environment (Python, Jupyter, and Snakemake).
+
+3) Run the Snakemake workflow to execute the notebook:
+
+snakemake -j 1
+
+4) The executed notebook will be saved in:
+
+Output/Project_executed.ipynb
+# References:
+Datasets:
+
+IMDb Top Rated Titles – Movies and TV Series. Kaggle. Retrieved from https://www.kaggle.com/datasets
+
+The Movie Database (TMDb) API. TMDb. Retrieved from https://www.themoviedb.org/documentation/api
+
+Software / Tools:
+
+Python Software Foundation. Python Language Reference, Version 3.11. Available at https://www.python.org/
+
+McKinney, W. (2023). pandas: Powerful Python Data Analysis Toolkit. Available at https://pandas.pydata.org/
+
+Harris, C. R., et al. (2020). Array programming with NumPy. Nature, 585, 357–362.
+
+Pedregosa, F., et al. (2011). Scikit-learn: Machine Learning in Python. Journal of Machine Learning Research, 12, 2825–2830.
