@@ -115,6 +115,10 @@ git clone <your-repo-url>
 cd <repo-folder>
 
 2) Ensure you have the required environment (Python, Jupyter, and Snakemake).
+python3 -m venv venv
+source venv/bin/activate
+
+pip install -r requirements.txt
 
 3) Run the Snakemake workflow to execute the notebook:
 
