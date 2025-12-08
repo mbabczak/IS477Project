@@ -111,8 +111,8 @@ Overall, this project emphasized the importance of integrating multiple data sci
 Reproducing Steps:
 1) Clone the repository from GitHub
 
-git clone <your-repo-url>
-cd <repo-folder>
+git clone https://github.com/mbabczak/IS477Project
+cd IS477Project
 
 2) Ensure you have the required environment (Python, Jupyter, and Snakemake).
 python3 -m venv venv
