@@ -118,7 +118,11 @@ cd <repo-folder>
 
 3) Run the Snakemake workflow to execute the notebook:
 
+Mac: 
 snakemake -j 1
+
+Windows:
+python -m snakemake -j 1
 
 4) The executed notebook will be saved in:
 
